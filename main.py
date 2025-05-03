@@ -53,11 +53,10 @@ meta_reviewer = autogen.AssistantAgent(
     system_message="You are a meta reviewer, you aggragate and review the work of other reviewers and give a final suggestion on the content.",
 )
 
-# Reflection function
 def reflection_message(recipient, messages, sender, config):
     return f'''Review the following content. \n\n {recipient.chat_messages_for_summary(sender)[-1]['content']}'''
 
-# Review chat configuration
+
 review_chats = [
     {
         "recipient": SEO_reviewer,
@@ -107,7 +106,7 @@ if st.button("Generate & Review") and not st.session_state.reviewed:
     else:
         with st.spinner("Writing blog post..."):
             writer_response = writer.initiate_chat(critic, message=f"Write a blog post about: {topic}")
-            critic.send("TERMINATE", writer)  # Force end review loop
+            critic.send("TERMINATE", writer) 
             st.session_state.reviewed = True
 
         st.subheader("🧠 Writer's Output")
