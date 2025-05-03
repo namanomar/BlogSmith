@@ -4,7 +4,6 @@ import json
 
 config_list_gemini = autogen.config_list_from_json("model_config.json")
 
-
 writer = autogen.AssistantAgent(
     name="Writer",
     system_message="You are a writer. You write engaging and concise blogpost (with title) on given topics. "
@@ -12,6 +11,7 @@ writer = autogen.AssistantAgent(
                    "Only return your final work without additional comments.",
     llm_config={"config_list": config_list_gemini},
 )
+
 
 critic = autogen.AssistantAgent(
     name="Critic",
